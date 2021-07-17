@@ -180,6 +180,7 @@ public class CountNode {
 		sList.addNode(56);
 		sList.append(70);
 		sList.insertAfter(sList.head, 30);
+		sList.insertAfter(sList.head.next, 40);
 		
 		// Displays the nodes present in the list
 		System.out.println("\nCreated Linked list is: ");
