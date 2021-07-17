@@ -21,22 +21,51 @@ public class CountNode {
 	public Node tail = null;
 
 	// addNode() will add a new node to the list
+<<<<<<< HEAD
 
 	public void addNode(int data) {
 		// Create a new node
 		Node newNode = new Node(data); // IDNode
+=======
+	/*
+	 * public void addNode(int data) { // Create a new node Node newNode = new
+	 * Node(data); // IDNode
+	 * 
+	 * // Checks if the list is empty if (head == null) { // If list is empty, both
+	 * head and tail will point to new node head = newNode; tail = newNode; } else {
+	 * // newNode will be added after tail such that tail's next will point to
+	 * newNode tail.next = newNode; // newNode will become new tail of the list tail
+	 * = newNode; } }
+	 */
+>>>>>>> a6cface51a7b1c5fea92c06d9e14749b645a0c8d
 
-		// Checks if the list is empty
+	public void append(int new_data) {
+		/*
+		 * 1. Allocate the Node & 2. Put in the data 3. Set next as null
+		 */
+		Node new_node = new Node(new_data);
+
+		/*
+		 * 4. If the Linked List is empty, then make the new node as head
+		 */
 		if (head == null) {
-			// If list is empty, both head and tail will point to new node
-			head = newNode;
-			tail = newNode;
-		} else {
-			// newNode will be added after tail such that tail's next will point to newNode
-			tail.next = newNode;
-			// newNode will become new tail of the list
-			tail = newNode;
+			head = new Node(new_data);
+			return;
 		}
+
+		/*
+		 * 4. This new node is going to be the last node, so make next of it as null
+		 */
+		new_node.next = null;
+
+		/* 5. Else traverse till the last node */
+		Node last = head;
+		while (last.next != null)
+			last = last.next;
+
+		/* 6. Change the next of last node */
+		last.next = new_node;
+		return;
 	}
 
 	public void append(int new_data) {
@@ -111,9 +140,15 @@ public class CountNode {
 		CountNode sList = new CountNode();
 
 		// Add nodes to the list
+<<<<<<< HEAD
 		sList.addNode(56);
 		sList.append(70);
 		sList.insertAfter(sList.head, 30);
+=======
+		sList.append(56);
+		sList.append(30);
+		sList.append(70);
+>>>>>>> a6cface51a7b1c5fea92c06d9e14749b645a0c8d
 
 		// Displays the nodes present in the list
 		sList.display();
