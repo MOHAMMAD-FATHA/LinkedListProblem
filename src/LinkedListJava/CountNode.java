@@ -1,5 +1,9 @@
 package LinkedListJava;
 
+/*
+ * @author Mohammad Fatha
+ * Purpose to create a linked list 
+ */
 public class CountNode {
 
 	class Node {
@@ -17,21 +21,44 @@ public class CountNode {
 	public Node tail = null;
 
 	// addNode() will add a new node to the list
-	public void addNode(int data) {
-		// Create a new node
-		Node newNode = new Node(data); // IDNode
+	/*
+	 * public void addNode(int data) { // Create a new node Node newNode = new
+	 * Node(data); // IDNode
+	 * 
+	 * // Checks if the list is empty if (head == null) { // If list is empty, both
+	 * head and tail will point to new node head = newNode; tail = newNode; } else {
+	 * // newNode will be added after tail such that tail's next will point to
+	 * newNode tail.next = newNode; // newNode will become new tail of the list tail
+	 * = newNode; } }
+	 */
 
-		// Checks if the list is empty
+	public void append(int new_data) {
+		/*
+		 * 1. Allocate the Node & 2. Put in the data 3. Set next as null
+		 */
+		Node new_node = new Node(new_data);
+
+		/*
+		 * 4. If the Linked List is empty, then make the new node as head
+		 */
 		if (head == null) {
-			// If list is empty, both head and tail will point to new node
-			head = newNode;
-			tail = newNode;
-		} else {
-			// newNode will be added after tail such that tail's next will point to newNode
-			tail.next = newNode;
-			// newNode will become new tail of the list
-			tail = newNode;
+			head = new Node(new_data);
+			return;
 		}
+
+		/*
+		 * 4. This new node is going to be the last node, so make next of it as null
+		 */
+		new_node.next = null;
+
+		/* 5. Else traverse till the last node */
+		Node last = head;
+		while (last.next != null)
+			last = last.next;
+
+		/* 6. Change the next of last node */
+		last.next = new_node;
+		return;
 	}
 
 	// display() will display all the nodes present in the list
@@ -43,7 +70,7 @@ public class CountNode {
 			System.out.println("List is empty");
 			return;
 		}
-		System.out.println("Nodes of singly linked list: ");
+		System.out.println("Nodes of linked list: ");
 		while (current != null) {
 			// Prints each node by incrementing pointer
 			System.out.print(current.data + " ");
@@ -57,9 +84,9 @@ public class CountNode {
 		CountNode sList = new CountNode();
 
 		// Add nodes to the list
-		sList.addNode(56);
-		sList.addNode(30);
-		sList.addNode(70);
+		sList.append(56);
+		sList.append(30);
+		sList.append(70);
 
 		// Displays the nodes present in the list
 		sList.display();
