@@ -158,7 +158,7 @@ public class CountNode {
 		System.out.println("\nCreated Linked list is: ");
 		sList.display();
 		
-		sList.pop(0);
+		sList.pop(2);
 		System.out.println("\nLinked List after Deletion : ");
 		sList.display();
 	}
