@@ -144,6 +144,33 @@ public class CountNode {
 		}
 		System.out.println();
 	}
+	
+
+    //searchNode() will search for a given node in the list  
+    public void searchNode(int data) {  
+        Node current = head;  
+        int i = 1;  
+        boolean flag = false;  
+        //Checks whether list is empty  
+        if(head == null) {  
+            System.out.println("List is empty");  
+        }  
+        else {  
+            while(current != null) {  
+                 //Compares node to be found with each node present in the list  
+                if(current.data == data) {  
+                    flag = true;  
+                    break;  
+                }  
+                i++;  
+                current = current.next;  
+            }  
+        }  
+        if(flag)  
+             System.out.println(current.data+" Element is present in the list at the position : " + i);  
+        else  
+             System.out.println("Element is not present in the list");  
+    }  
 
 	public static void main(String[] args) {
 
@@ -158,6 +185,11 @@ public class CountNode {
 		System.out.println("\nCreated Linked list is: ");
 		sList.display();
 		
+		//Search the Node
+		System.out.println();
+		sList.searchNode(30);
+		
+		//Delete the Node 
 		sList.pop(2);
 		System.out.println("\nLinked List after Deletion : ");
 		sList.display();
