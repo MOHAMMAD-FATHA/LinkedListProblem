@@ -20,54 +20,30 @@ public class CountNode {
 	public Node head = null;
 	public Node tail = null;
 
+
 	// addNode() will add a new node to the list
-<<<<<<< HEAD
 
-	public void addNode(int data) {
-		// Create a new node
+	public void addNode(int data) { 
+		// Create a new node 
 		Node newNode = new Node(data); // IDNode
-=======
-	/*
-	 * public void addNode(int data) { // Create a new node Node newNode = new
-	 * Node(data); // IDNode
-	 * 
-	 * // Checks if the list is empty if (head == null) { // If list is empty, both
-	 * head and tail will point to new node head = newNode; tail = newNode; } else {
-	 * // newNode will be added after tail such that tail's next will point to
-	 * newNode tail.next = newNode; // newNode will become new tail of the list tail
-	 * = newNode; } }
-	 */
->>>>>>> a6cface51a7b1c5fea92c06d9e14749b645a0c8d
-
-	public void append(int new_data) {
-		/*
-		 * 1. Allocate the Node & 2. Put in the data 3. Set next as null
-		 */
-		Node new_node = new Node(new_data);
-
-		/*
-		 * 4. If the Linked List is empty, then make the new node as head
-		 */
-		if (head == null) {
-			head = new Node(new_data);
-			return;
-		}
-
-		/*
-		 * 4. This new node is going to be the last node, so make next of it as null
-		 */
-		new_node.next = null;
-
-		/* 5. Else traverse till the last node */
-		Node last = head;
-		while (last.next != null)
-			last = last.next;
-
-		/* 6. Change the next of last node */
-		last.next = new_node;
-		return;
+		 
+		  // Checks if the list is empty 
+		if (head == null) { 
+			// If list is empty, both head and tail will point to new node 
+			head = newNode; 
+			tail = newNode; 
+			} 
+		else 
+		{
+		 // newNode will be added after tail such that tail's next will point to newNode 
+		 tail.next = newNode; 
+		 // newNode will become new tail of the list 
+		 tail = newNode; 
+		 } 
 	}
-
+		
+	
+	
 	public void append(int new_data) {
 		/*
 		 * 1. Allocate the Node & 2. Put in the data 3. Set next as null
@@ -98,25 +74,59 @@ public class CountNode {
 	}
 
 	/* Inserts a new node after the given prev_node. */
-	public void insertAfter(Node prev_node, int new_data) {
-		/* 1. Check if the given Node is null */
-		if (prev_node == null) {
-			System.out.println("The given previous node cannot be null");
-			return;
-		}
+    public void insertAfter(Node prev_node, int new_data)
+    {
+        /* 1. Check if the given Node is null */
+        if (prev_node == null)
+        {
+            System.out.println("The given previous node cannot be null");
+            return;
+        }
+ 
+        /* 2 & 3: Allocate the Node &
+                  Put in the data*/
+        Node new_node = new Node(new_data);
+ 
+        /* 4. Make next of new Node as next of prev_node */
+        new_node.next = prev_node.next;
+ 
+        /* 5. make next of prev_node as new_node */
+        prev_node.next = new_node;
+    }
+    
+    /* Given a reference (pointer to pointer) to the head of a list
+    and a position, deletes the node at the given position */
+ void pop(int position)
+ {
+     // If linked list is empty
+     if (head == null)
+         return;
 
-		/*
-		 * 2 & 3: Allocate the Node & Put in the data
-		 */
-		Node new_node = new Node(new_data);
+     // Store head node
+     Node temp = head;
 
-		/* 4. Make next of new Node as next of prev_node */
-		new_node.next = prev_node.next;
+     // If head needs to be removed
+     if (position == 0)
+     {
+         head = temp.next;   // Change head
+         return;
+     }
 
-		/* 5. make next of prev_node as new_node */
-		prev_node.next = new_node;
-	}
+     // Find previous node of the node to be deleted
+     for (int i=0; temp!=null && i<position-1; i++)
+         temp = temp.next;
 
+     // If position is more than number of nodes
+     if (temp == null || temp.next == null)
+         return;
+
+     // Node temp->next is the node to be deleted
+     // Store pointer to the next of node to be deleted
+     Node next = temp.next.next;
+
+     temp.next = next;  // Unlink the deleted node from list
+ }
+ 
 	// display() will display all the nodes present in the list
 	public void display() {
 		// Node current will point to head
@@ -140,17 +150,16 @@ public class CountNode {
 		CountNode sList = new CountNode();
 
 		// Add nodes to the list
-<<<<<<< HEAD
 		sList.addNode(56);
 		sList.append(70);
 		sList.insertAfter(sList.head, 30);
-=======
-		sList.append(56);
-		sList.append(30);
-		sList.append(70);
->>>>>>> a6cface51a7b1c5fea92c06d9e14749b645a0c8d
-
+		
 		// Displays the nodes present in the list
+		System.out.println("\nCreated Linked list is: ");
+		sList.display();
+		
+		sList.pop(0);
+		System.out.println("\nLinked List after Deletion : ");
 		sList.display();
 	}
 }
