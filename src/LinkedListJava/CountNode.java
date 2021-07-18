@@ -1,5 +1,9 @@
 package LinkedListJava;
 
+import java.io.*;
+
+import java.util.LinkedList;
+
 /*
  * @author Mohammad Fatha
  * Purpose to create a linked list 
@@ -14,6 +18,7 @@ public class CountNode {
 			this.data = data;
 			this.next = null;
 		}
+
 	}
 
 	// Represent the head and tail of the singly linked list
@@ -147,7 +152,7 @@ public class CountNode {
 	
 
     //searchNode() will search for a given node in the list  
-    public void searchNode(int data) {  
+    public int searchNode(int data) {  
         Node current = head;  
         int i = 1;  
         boolean flag = false;  
@@ -169,9 +174,62 @@ public class CountNode {
         if(flag)  
              System.out.println(current.data+" Element is present in the list at the position : " + i);  
         else  
-             System.out.println("Element is not present in the list");  
+             System.out.println("Element is not present in the list");
+		return data;  
     }  
+    
 
+    // sortList() will sort nodes of the list in ascending
+    // order
+    public void sortList()
+    {
+  
+        // Node current will point to head
+        Node current = head, index = null;
+  
+        int temp;
+  
+        if (head == null) {
+            return;
+        }
+        else {
+            while (current != null) {
+                // Node index will point to node next to
+                // current
+                index = current.next;
+  
+                while (index != null) {
+                    // If current node's data is greater
+                    // than index's node data, swap the data
+                    // between them
+                    if (current.data > index.data) {
+                        temp = current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+  
+                    index = index.next;
+                }
+                current = current.next;
+            }
+        }
+        
+    }
+    
+    public int size( )
+    {
+        int count = 0;
+        Node position = head;
+
+        while (position != null)
+        {
+            count++;
+            position = position.next;
+        }
+        return count;
+    }
+    
+    
 	public static void main(String[] args) {
 
 		CountNode sList = new CountNode();
@@ -190,9 +248,19 @@ public class CountNode {
 		System.out.println();
 		sList.searchNode(30);
 		
-		//Delete the Node 
-		sList.pop(2);
+		//Sorting Linked List 
+		System.out.println();
+		sList.sortList();
+		System.out.println("Sorted list is : ");
+		sList.display();
+		
+		//Delete the Node
+		sList.pop(0);
 		System.out.println("\nLinked List after Deletion : ");
 		sList.display();
+		
+		//Display the size of linked list
+		System.out.println();
+		System.out.println("The size of the linked list is " + sList.size());
 	}
 }
